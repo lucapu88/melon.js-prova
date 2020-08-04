@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title><%= title %></title>
+        <link rel="stylesheet" type="text/css" media="screen" href="index.css">
+        <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon" href="icons/touch-icon-iphone-60x60.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="icons/touch-icon-ipad-76x76.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="icons/touch-icon-iphone-retina-120x120.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="icons/touch-icon-ipad-retina-152x152.png">
+        <link rel="manifest" href="manifest.json">
+    </head>
+    <body>
+        <!-- Canvas placeholder -->
+        <div class="head">
+            <h1>title</h1> 
+            <button>prova</button>
+        </div>
+        <div id="screen"></div>
+        <button>prova2</button>
+
+        <!-- es5/es6 shim for legacy browsers" -->
+        <script src="lib/es5-shim/es5-shim.min.js"></script>
+        <script src="lib/es5-shim/es5-sham.min.js"></script>
+        <script src="lib/es6-shim/es6-shim.min.js"></script>
+        <script src="lib/es6-shim/es6-sham.min.js"></script>
+
+	<!-- build:js:dist lib/melon/melonjs.min.js -->
+        <script src="lib/melon/melonjs.js"></script>
+        <script src="lib/melon/plugins/debug/debugPanel.js"></script>
+	<!-- /build -->
+
+        <!-- build:js:dist js/app.min.js -->
+        <script type="text/javascript" src="js/fix/glShader.js"></script>
+
+        <!-- Game Scripts -->
+        <script type="text/javascript" src="js/game.js"></script>
+        <script type="text/javascript" src="js/resources.js"></script>
+
+        <!-- <script type="text/javascript" src="js/entities/entities.js"></script> -->
+        <!-- <script type="text/javascript" src="js/entities/HUD.js"></script> -->
+
+        <!-- <script type="text/javascript" src="js/screens/title.js"></script> -->
+        <script type="text/javascript" src="js/screens/play.js"></script>
+        <script type="text/javascript" src="js/entities/player.js"></script>
+        <!-- /build -->
+
+        <!-- Bootstrap -->
+        <script type="text/javascript">
+            me.device.onReady(function onReady() {
+                game.onload();
+            });
+        </script>
+    </body>
+</html>
