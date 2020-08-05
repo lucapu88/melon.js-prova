@@ -33,7 +33,7 @@
 </data>
  </layer>
  <objectgroup id="2" name="mainPlayer">
-  <object id="1" name="mainPlayer" x="60.9783" y="230.761" width="64" height="64">
+  <object id="1" name="mainPlayer" x="0" y="0" width="64" height="64">
    <properties>
     <property name="framewidth" type="int" value="64"/>
     <property name="image" value="pipottino"/>
