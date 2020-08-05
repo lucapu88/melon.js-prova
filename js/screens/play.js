@@ -9,7 +9,11 @@ game.PlayScreen = me.Stage.extend({
 
         me.input.bindKey(me.input.KEY.LEFT, "left");
         me.input.bindKey(me.input.KEY.RIGHT, "right");
-       me.input.bindPointer(me.input.KEY.RIGHT);
+        me.input.registerPointerEvent("pointerdown", me.game.viewport, 
+        function(ev){
+          me.event.publish('/moveto',[ev.gameX, ev.gameY]);
+        });
+      //  me.input.bindPointer(me.input.KEY.RIGHT);
         me.input.bindKey(me.input.KEY.UP, "up");
         me.input.bindKey(me.input.KEY.DOWN, "down");
         me.input.bindKey(me.input.KEY.SPACE, "shoot", true);
