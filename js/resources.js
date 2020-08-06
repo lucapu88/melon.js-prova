@@ -4,6 +4,11 @@ game.resources = [
     type: "tmx",
     src: "data/map/grass.tmx",
   },
+  { //background
+    name: "background",
+    type: "image",
+    src: "data/img/background.png",
+  },
   { //map-image
     name: "grass",
     type: "image",
