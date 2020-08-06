@@ -10,14 +10,14 @@ game.Player = me.Entity.extend({
         this.renderable.addAnimation("stand", [6]);
         this.renderable.setCurrentAnimation("stand");
      //   this._super(me.Sprite, "init", [me.game.viewport.width / 2 - image.width / 2, me.game.viewport.height - image.height - 20, { image: image }]);
-        this.velx = 450;
-        this.vely = 450;
+        this.velx = 100;
+        this.vely = 100;
         this.maxX = me.game.viewport.width - this.width;
         me.event.subscribe('/moveto', this.moveTo.bind(this));
-        me.event.subscribe('/moveend', this.moveEnd.bind(this));
+        //me.event.subscribe('/moveend', this.moveEnd.bind(this));
     },
 
-    moveTo: function (x, y) {
+    moveTo: function (x, y,initx,inity) {
       /**
        * x è il punto di origine dell'asse x dell'entity
        * y è il punto di origine dell'asse y dell'entity
@@ -25,35 +25,55 @@ game.Player = me.Entity.extend({
        * il nuovo vettore è uguale a: x - la larghezza dell'entity diviso 2, y - l'altezza dell'entity diviso 2
        * 0 - 64 /2 = 32  
        */
-      console.log("UP: " + this.initXY.x);
-      
-      var dest = new me.Vector2d(x - this.width / 2, y - this.height / 2); 
-      this.destination = dest;
+      //console.log("UP-y: " + this.initXY.y);
 
-      this.vel = dest.clone().sub(this.pos).normalize().scale(450);
-      this.walking = true;
-      this.renderable.setCurrentAnimation("walk");
-      if ((this.destination.y - this.initXY.y) > 0) {
+        console.log(initx);
+        console.log(inity);
+        console.log(x);
+        console.log(y);
+        var startV = new me.Vector2d(initx - this.width / 2, inity - this.height / 2);
+        this.startpoint = startV;
+        var dest = new me.Vector2d(x - this.width / 2, y - this.height / 2);
+        this.destination = dest;
+        console.log(startV.renderable.angleV(dest));
+        console.log(dest.length());
+
+
+        this.vel = dest.clone().sub(this.pos).normalize().scale(450);
+        this.walking = true;
+        this.renderable.setCurrentAnimation("walk");
+        if(dest.x > initx){
+            this.renderable.flipX(false);
+            this.renderable.setCurrentAnimation("walk");
+        } else {
+            this.renderable.flipX(true);
+            this.renderable.setCurrentAnimation("walk");
+        }
+        //if(dest.x)
+      /*if ((this.destination.y - this.initXY.y) > 0) {
         this.renderable.setCurrentAnimation("walk_down");
       } else {
         this.renderable.setCurrentAnimation("walk_up");
-      }
+      }*/
 
       console.log("DOWN: " + this.destination);
       // console.log((this.destination.x - this.initXY.x) > 0);
       // console.log((this.destination.y - this.initXY.y) > 0);
+
+        //console.log(this.initXY)
+        console.log(this.destination)
     },
 
-    moveEnd: function (x, y) {
+   /* moveEnd: function (x, y) {
       var dest = new me.Vector2d(x - this.width / 2, y - this.height / 2);
-      this.initXY = dest;
-    },
+      this.initXY = dest
+    },*/
 
     update: function (time) {
         this._super(me.Entity, "update", [time]);
-        if (this.walking == true) {
+        if (this.walking === true) {
           var dot1 = this.pos.dotProduct(this.destination);
-          this.pos.add(this.vel.clone().scale(time / 1000));
+          this.pos.add(this.vel.clone().scale(time / 4000));
           var dot2 = this.pos.dotProduct(this.destination);
           var d = this.destination.length2();
           if ((dot1 > d && dot2 <= d) || (dot1 < d && dot2 >= d)) {

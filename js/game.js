@@ -11,7 +11,7 @@ var game = (function() {
     },
 
     onload() {
-      if (!me.video.init(1200, 600, {wrapper : "screen", scale : "flex-width", scaleMethod : "fit"})) {
+      if (!me.video.init(1920, 1080, {wrapper : "screen", scale : "auto", scaleMethod : "fit"})) {
         alert("Your browser does not support HTML5 canvas.");
         return;
       }
@@ -25,7 +25,6 @@ var game = (function() {
       me.state.set(me.state.PLAY, new game.PlayScreen());
       //register entity object
       me.pool.register("mainPlayer", game.Player);
-
       // Start the game.
       me.state.change(me.state.PLAY);
     }
